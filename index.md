@@ -8,7 +8,7 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-# Post로 이동하려면 [여기](https://Youngkwan-Cho.github.io/post)를 누르세요
+### Post로 이동하려면 [여기](https://Youngkwan-Cho.github.io/post)를 누르세요
 
 ```markdown
 ## Header 2
