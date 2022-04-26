@@ -1,4 +1,5 @@
-## {{page.title}}
+---
+{{page.title}}
 
 title: "github.io 블로그 첫 글"
 
@@ -12,3 +13,4 @@ tags:
   - Blog
 
 last_modified_at:{{page.last_modified_at}} 2022-04-26
+---
