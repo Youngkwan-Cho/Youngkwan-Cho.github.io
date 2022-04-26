@@ -8,7 +8,7 @@ tags:
 last_modified_at: 2022-04-26T08:06:00-05:00
 ---
 
-{{page.title}}
+{{page.excerpt}}
 
 ## 첫 {{page.categories}} 포스팅
 
