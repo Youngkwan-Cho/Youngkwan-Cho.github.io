@@ -12,6 +12,7 @@ Markdown is a lightweight and easy-to-use syntax for styling your writing. It in
 Syntax highlighted code block
 
 # Post로 이동하려면 [여기](https://Youngkwan-Cho.github.io/post)를 누르세요
+![사진](src)
 ## Header 2
 ### Header 3
 
