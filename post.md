@@ -12,7 +12,7 @@ last_modified_at: 2022-04-26T08:06:00-05:00
 
 ## 첫 {{page.categories}} 포스팅
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/09/HGU-Emblem-eng2.png" width="50%" height="50%" align="left"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/09/HGU-Emblem-eng2.png" width="300" height="300" align="center"/>
 
 **안녕하세요**
 
