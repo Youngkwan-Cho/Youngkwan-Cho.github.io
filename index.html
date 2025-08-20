@@ -24,7 +24,7 @@ layout: null
   <link href="{{ '/css/fontawesome.all.min.css' | relative_url }}" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" rel="stylesheet">
   <link href="{{ '/css/bulma.min.css' | relative_url }}" rel="stylesheet">
-  <link href="{{ '/css/index.css' | relative_url }}" rel="stylesheet>
+  <link href="{{ '/css/index.css' | relative_url }}" rel="stylesheet">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script defer src="{{ '/js/fontawesome.all.min.js' | relative_url }}"></script>
@@ -138,6 +138,50 @@ layout: null
     </div>
   </div>
 
+  <!-- ===== Education (먼저 출력) ===== -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Education</h2>
+
+      {% for edu in site.data.education %}
+      <div class="columns education-block">
+        <div class="column is-3">
+          {% assign start = edu.start | default: edu.from | default: edu.period_start %}
+          {% assign end   = edu.end   | default: edu.to   | default: edu.period_end %}
+          {% if edu.period %}
+            <div class="education-period">{{ edu.period }}</div>
+          {% else %}
+            <div class="education-period">
+              {% if start %}{{ start }}{% endif %}{% if start and end %} – {% endif %}{% if end %}{{ end }}{% endif %}
+            </div>
+          {% endif %}
+        </div>
+        <div class="column">
+          {% assign inst   = edu.institution | default: edu.school | default: edu.university %}
+          {% assign degree = edu.degree     | default: edu.title %}
+          {% assign dept   = edu.department | default: edu.major %}
+          <h3 class="education-title">
+            {% if degree and inst %}{{ degree }}, {{ inst }}{% elsif inst %}{{ inst }}{% else %}{{ degree }}{% endif %}
+          </h3>
+          {% if dept %}<div class="education-dept">{{ dept }}</div>{% endif %}
+          {% if edu.location %}<div class="education-location">{{ edu.location }}</div>{% endif %}
+          {% if edu.advisor %}<div class="education-advisor">Advisor: {{ edu.advisor }}</div>{% endif %}
+          {% if edu.advisors %}<div class="education-advisors">Advisors: {{ edu.advisors }}</div>{% endif %}
+          {% if edu.description %}<p class="education-description">{{ edu.description }}</p>{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Divider between Education and Publications -->
+  <div class="hr">
+    <div class="container">
+      <hr>
+    </div>
+  </div>
+
+  <!-- ===== Publications ===== -->
   <section class="section">
     <div class="container is-max-desktop">
       <h2 class="title is-3">Publications</h2>
@@ -145,7 +189,7 @@ layout: null
       {% for publication in site.data.publications %}
       <div class="publication-block columns">
 
-        {% if publication.image or publication.image_mouseover %}
+        <!-- 항상 이미지 칼럼을 노출: publication.image 없으면 mflpr.jpg 사용 -->
         <div class="column is-2">
           <div class="publication-image {% if publication.image_mouseover %}publication-mousecell{% endif %}">
             {% if publication.image_mouseover and publication.image_mouseover contains "mp4" %}
@@ -153,14 +197,13 @@ layout: null
               <source src="./images/{{ publication.image_mouseover }}" type="video/mp4">
               Your browser does not support the video tag.
             </video>
-            {% elsif publication.image %}
-            <img alt="{{ publication.title }}" src="./images/{{ publication.image }}" />
             {% endif %}
+            {% assign pub_image = publication.image | default: 'mflpr.jpg' %}
+            <img alt="{{ publication.title }}" src="./images/{{ pub_image }}" />
           </div>
         </div>
-        {% endif %}
 
-        <div class="column {% unless publication.image or publication.image_mouseover %}is-12{% endunless %}">
+        <div class="column">
           <div class="content">
             {%- assign primary_link = nil -%}
             {% if publication.project_page %}{% assign primary_link = publication.project_page %}{% endif %}
