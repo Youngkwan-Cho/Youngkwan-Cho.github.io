@@ -1,3 +1,4 @@
+
 ---
 layout: null
 ---
@@ -20,7 +21,6 @@ layout: null
   </script>
   {% endif %}
 
-  
   <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="{{ '/css/fontawesome.all.min.css' | relative_url }}" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" rel="stylesheet">
@@ -91,54 +91,6 @@ layout: null
     </div>
   </div>
 
-  {%- comment -%}
-  <!-- Highlights (commented out by request) -->
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Highlights</h2>
-      <div class="columns is-multiline">
-        {% for highlight in site.data.highlights %}
-        <div class="column is-4">
-          <div class="card highlight-card">
-            <div class="card-image">
-              <figure class="image">
-                {% if highlight.video %}
-                <video autoplay loop muted playsinline class="highlight-media">
-                  <source src="./images/{{ highlight.video }}" type="video/mp4">
-                  <img src="./images/{{ highlight.image }}" alt="{{ highlight.title }}">
-                </video>
-                {% else %}
-                <img src="./images/{{ highlight.image }}" alt="{{ highlight.title }}">
-                {% endif %}
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-5 highlight-title">
-                    <a href="{{ highlight.url }}" target="_blank" rel="noopener">{{ highlight.title }}</a>
-                  </p>
-                </div>
-              </div>
-              <div class="content highlight-description">
-                {{ highlight.description }}
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
-  <!-- Divider -->
-  <div class="hr">
-    <div class="container">
-      <hr>
-    </div>
-  </div>
-  {%- endcomment -%}
-  
   <!-- ===== Education (first) ===== -->
   <section class="section">
     <div class="container is-max-desktop">
@@ -148,34 +100,49 @@ layout: null
         {% for edu in site.data.education %}
         <li>
           <b>
-            {% assign inst = edu.institution | default: edu.school | default: edu.university | default: edu.name %}
-            {% assign loc  = edu.location | default: edu.country %}
+            {% assign inst = edu.institution %}
+            {% if inst == nil or inst == '' %}{% assign inst = edu.school %}{% endif %}
+            {% if inst == nil or inst == '' %}{% assign inst = edu.university %}{% endif %}
+            {% if inst == nil or inst == '' %}{% assign inst = edu.name %}{% endif %}
+            {% assign loc  = edu.location %}
+            {% if loc == nil or loc == '' %}{% assign loc = edu.country %}{% endif %}
             {% if inst %}{{ inst }}{% endif %}{% if loc %}, {{ loc }}{% endif %}
           </b>
           <ul class="edu-sub">
-            {% assign description = edu.description | default: edu.title %}
-            {% assign dept   = edu.department | default: edu.major %}
+            {% assign description = edu.description %}
+            {% if description == nil or description == '' %}{% assign description = edu.title %}{% endif %}
+            {% assign dept   = edu.department %}
+            {% if dept == nil or dept == '' %}{% assign dept = edu.major %}{% endif %}
             {% assign desc   = edu.description %}
 
-            {% if description or dept or edu.advisor or edu.advisors or desc %}
+            {% if description or dept or edu.advisor or edu.advisors %}
             <li>
               {% if description %}{{ description }}{% endif %}
               {% if dept %}{% if description %} in {% endif %}{{ dept }}{% endif %}
               {% if edu.advisor or edu.advisors %}
                 (Advisor : {% if edu.advisor %}{{ edu.advisor }}{% else %}{{ edu.advisors }}{% endif %})
               {% endif %}
-              {% if desc and (not description and not dept and not edu.advisor and not edu.advisors) %}{{ desc }}{% endif %}
             </li>
+            {% elsif desc %}
+            <li>{{ desc }}</li>
             {% endif %}
 
-            {% assign period = edu.period | default: edu.dates %}
-            {% assign start = edu.start | default: edu.from | default: edu.period_start %}
-            {% assign end   = edu.end | default: edu.to | default: edu.period_end %}
+            {% assign period = edu.period %}
+            {% if period == nil or period == '' %}{% assign period = edu.dates %}{% endif %}
+            {% assign start = edu.start %}
+            {% if start == nil or start == '' %}{% assign start = edu.from %}{% endif %}
+            {% if start == nil or start == '' %}{% assign start = edu.period_start %}{% endif %}
+            {% assign end   = edu.end %}
+            {% if end == nil or end == '' %}{% assign end = edu.to %}{% endif %}
+            {% if end == nil or end == '' %}{% assign end = edu.period_end %}{% endif %}
             <li>
               {% if period %}
                 {{ period }}
               {% else %}
-                {% if start %}{{ start }}{% endif %}{% if start or end %}{% if start and end %} - {% else %}{% if start %} - Present{% endif %}{% endif %}{% endif %}{% if end %}{{ end }}{% endif %}
+                {% if start %}{{ start }}{% endif %}
+                {% if start and end %} - {% endif %}
+                {% if end %}{{ end }}{% endif %}
+                {% if start and end == nil %} - Present{% endif %}
               {% endif %}
             </li>
 
@@ -208,26 +175,34 @@ layout: null
         <!-- always show image column; default to mflpr.jpg -->
         <div class="column is-2">
           <div class="publication-image {% if publication.image_mouseover %}publication-mousecell{% endif %}">
-            {% if publication.image_mouseover and publication.image_mouseover contains "mp4" %}
-            <video autoplay preload playsinline class="" height="100%" loop muted width="100%">
-              <source src="./images/{{ publication.image_mouseover }}" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+            {% if publication.image_mouseover %}
+              {% if publication.image_mouseover contains 'mp4' %}
+              <video autoplay preload playsinline class="" height="100%" loop muted width="100%">
+                <source src="./images/{{ publication.image_mouseover }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              {% endif %}
             {% endif %}
-            {% assign pub_image = publication.image | default: 'mflpr.jpg' %}
+            {% assign pub_image = publication.image %}
+            {% if pub_image == nil or pub_image == '' %}{% assign pub_image = 'mflpr.jpg' %}{% endif %}
             <img alt="{{ publication.title }}" src="./images/{{ pub_image }}" />
           </div>
         </div>
 
         <div class="column">
           <div class="content">
-            {%- assign primary_link = nil -%}
-            {% if publication.project_page %}{% assign primary_link = publication.project_page %}{% endif %}
-            {% if primary_link == nil and publication.journal_url %}{% assign primary_link = publication.journal_url %}{% endif %}
-            {% if primary_link == nil and publication.doi %}{% assign primary_link = 'https://doi.org/' | append: publication.doi %}{% endif %}
-            {% if primary_link == nil and publication.arxiv %}{% assign primary_link = 'https://arxiv.org/abs/' | append: publication.arxiv %}{% endif %}
+            {% assign primary_link = '' %}
+            {% if publication.project_page %}
+              {% assign primary_link = publication.project_page %}
+            {% elsif publication.journal_url %}
+              {% assign primary_link = publication.journal_url %}
+            {% elsif publication.doi %}
+              {% assign primary_link = 'https://doi.org/' | append: publication.doi %}
+            {% elsif publication.arxiv %}
+              {% assign primary_link = 'https://arxiv.org/abs/' | append: publication.arxiv %}
+            {% endif %}
 
-            {% if primary_link %}
+            {% if primary_link != '' %}
             <h3 class="publication-title"><a href="{{ primary_link }}" target="_blank" rel="noopener">{{ publication.title }}</a></h3>
             {% else %}
             <h3 class="publication-title">{{ publication.title }}</h3>
