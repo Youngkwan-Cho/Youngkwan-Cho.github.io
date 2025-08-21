@@ -97,7 +97,9 @@
         margin: 0 !important;
         margin-top: 0.5em !important;
     }
-    
+}
+
+.edu-block {
     .edu-list{
       list-style: none;            /* 상위(학교) 항목은 글머리표 제거 */
       margin: 0;
@@ -133,4 +135,5 @@
         margin-left: 1rem;
         padding-left: .5rem;
       }
+    }
 }
