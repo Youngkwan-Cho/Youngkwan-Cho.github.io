@@ -6,7 +6,11 @@
   font-weight: 700;
 }
 
-.portrait { overflow: hidden; }
+.portrait {
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.06);
+}
 
 .footer .footer-links a {
   font-size: 25px;
