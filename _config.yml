@@ -27,7 +27,7 @@ description: |
   Recently, to enable better application and implementation on real-world scenarios, I am working on real-world weather restoration.
   
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://youngkwan.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: Youngkwan-Cho
 google_scholar: ge6o-UgAAAAJ
 google_analytics: 
