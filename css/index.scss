@@ -2,8 +2,11 @@
 ---
 @import "base";
 
-.title {
-  font-family: 'Google Sans';
+.title,
+.subtitle,
+h1, h2, h3, h4, h5, h6,
+.ij-heading {
+  font-family: "Noto Sans", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   font-weight: 700;
 }
 
