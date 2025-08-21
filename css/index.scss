@@ -103,3 +103,20 @@ button, input, select, textarea {
 @media (max-width: 768px) {
   .edu-sub { margin-left: 1rem; padding-left: .5rem; }
 }
+/* ==== 2줄째부터 4px 들여쓰기 유틸 ==== */
+@mixin hanging($px) {
+  padding-left: $px;
+  text-indent: -$px;
+}
+
+/* Education: ● 불릿 항목의 줄바꿈 라인만 4px 더 안쪽으로 */
+.edu-sub li {
+  @include hanging(4px);
+}
+
+/* Publications: 글 있는 블록(저자/저널/설명) 줄바꿈 시 4px 들여쓰기 */
+.publication-authors,
+.publication-venue,
+.publication-description {
+  @include hanging(4px);
+}
