@@ -249,8 +249,8 @@ layout: null
               </a>
               {% endif %}
               
-              {%- if publication.link %}
-              <a class="external-link button is-small is-ghost" href="{{ pdf_link }}" target="_blank" rel="noopener">
+              {%- if publication.url %}
+              <a class="external-link button is-small is-ghost" href="{{ publication.url }}" target="_blank" rel="noopener">
                 <span class="icon"><i class="fas fa-file-pdf"></i></span>
                 <span>PDF</span>
               </a>
