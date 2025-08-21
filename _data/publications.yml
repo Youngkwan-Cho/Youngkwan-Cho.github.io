@@ -1,8 +1,7 @@
 - id: mf-lpr2
   title: "MF-LPR2: Multi-frame license plate image restoration and recognition using optical flow"
   venue: "Computer Vision and Image Understanding (CVIU), 2025"
-  journal_url: "https://www.sciencedirect.com/science/article/abs/pii/S1077314225000840"
-  doi: "10.1016/j.cviu.2025.104361"
+  url: "https://www.sciencedirect.com/science/article/abs/pii/S1077314225000840"
   authors:
   - kihyunna
   - junseokoh
