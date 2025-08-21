@@ -39,6 +39,22 @@ button, input, select, textarea {
     a, a:visited { color: #000; }
   }
 
+  .publication-title:has(> a) > a {
+    display: inline-block;   /* inline에선 일부 브라우저에서 text-indent 무시됨 */
+    @include hanging(4px);
+  }
+  /* 제목: 링크 없을 때(plain text) */
+  .publication-title:not(:has(> a)) {
+    @include hanging(4px);
+  }
+
+  /* 본문 텍스트들 */
+  .content .publication-authors,
+  .content .publication-venue,
+  .content .publication-description {
+    @include hanging(4px);
+  }
+
   /* 저널명(첫 span)만 회색, 폰트는 상속 */
   .publication-venue { width: fit-content; margin-top: 0; color: inherit; }
   .publication-venue > span:first-child { color: #7a7a7a; }
@@ -96,7 +112,7 @@ button, input, select, textarea {
   margin-left: 1.25rem;   /* 들여쓰기 */
   padding-left: .75rem;   /* 점과 텍스트 간격 */
 }
-.edu-sub li { margin: .15rem 0; }
+.edu-sub li { @include hanging(4px); }
 
 .edu-sub li::marker { color: #888; }
 
