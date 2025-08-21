@@ -2,14 +2,21 @@
 ---
 @import "base";
 
+/* === Headings도 base의 폰트를 상속: family 지정 안 함 === */
 .title,
 .subtitle,
 h1, h2, h3, h4, h5, h6,
 .ij-heading {
-  font-family: "Noto Sans", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: inherit !important;  /* 어떤 외부 CSS가 덮어써도 무조건 상속 */
   font-weight: 700;
 }
 
+/* 폼 컨트롤까지 확실히 상속 (일부 브라우저/라이브러리 대비) */
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+/* 초상화: 모서리 둥글게 + 은은한 그림자 */
 .portrait {
   overflow: hidden;
   border-radius: 10px;
@@ -32,7 +39,7 @@ h1, h2, h3, h4, h5, h6,
     a, a:visited { color: #000; }
   }
 
-  /* 저널명(첫 span)만 회색, 나머지는 기본(검정) */
+  /* 저널명(첫 span)만 회색, 나머지는 상속(=base 폰트) */
   .publication-venue { width: fit-content; margin-top: 0; color: inherit; }
   .publication-venue > span:first-child { color: #7a7a7a; }
 
@@ -46,7 +53,7 @@ h1, h2, h3, h4, h5, h6,
 
   .publication-awards { color: firebrick; width: fit-content; font-weight: bolder; }
 
-  /* 저자는 전부 검정 */
+  /* 저자는 전부 검정(폰트는 base 상속) */
   .publication-authors {
     color: #000;
 
@@ -54,14 +61,6 @@ h1, h2, h3, h4, h5, h6,
 
     a, a:visited { color: #000 !important; }
     a:hover { text-decoration: underline; }
-
-    /* (대안) Liquid를 못 바꿀 때: 공저자에 † 표시를 CSS로 붙임
-       - 쉼표 뒤에 표시되는 점은 감안하세요 (권장은 Liquid 패치) */
-    .author-block:not(.author-me)::after {
-      content: "†";
-      margin-left: .15em;
-      font-weight: 600;
-    }
   }
 
   .publication-image {
@@ -81,19 +80,6 @@ h1, h2, h3, h4, h5, h6,
   .publication-description { color: #333; margin: 0.5em 0; }
 
   .publication-links { margin: 0 !important; margin-top: 0.5em !important; }
-}
-
-/* ===== International Journal heading ===== */
-/* 방법 A: h3에 class="title is-5 ij-heading" 달았을 때 */
-.ij-heading {
-  font-family: 'Google Sans';
-  font-weight: 700;
-}
-
-/* 방법 B: 기존에 subtitle로 두었을 때(취약하지만 편법) */
-.title.is-3 + .subtitle.is-5 {
-  font-family: 'Google Sans';
-  font-weight: 700;
 }
 
 /* ===== Education ===== */
