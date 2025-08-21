@@ -212,7 +212,9 @@ layout: null
               {% for author_id in publication.authors %}
                 {% assign author = site.data.authors[author_id] %}
                 {% assign author_full = '' %}
-                {% if author %}{% assign author_full = author.first_name | append: ' ' | append: author.last_name %}{% endif %}
+                {% if author %}
+                  {% assign author_full = author.first_name | append: ' ' | append: author.last_name %}
+                {% endif %}
             
                 {%- assign is_me = false -%}
                 {%- if author and author.is_me -%}
@@ -221,22 +223,29 @@ layout: null
                   {%- assign is_me = true -%}
                 {%- endif -%}
             
+                {%- assign is_corr = false -%}
+                {%- if author and author.type and author.type == 'corresponding' -%}
+                  {%- assign is_corr = true -%}
+                {%- endif -%}
+            
                 <span class="author-block {% if is_me %}author-me{% endif %}">
                   {% if author %}
+                    {% capture author_name -%}
+                      {{ author.first_name }}{% if author.middle_name %} {{ author.middle_name }}{% endif %} {{ author.last_name }}
+                    {%- endcapture %}
                     {% if author.website and author.website != "" and not author.is_me %}
                       <a href="{{ author.website }}" target="_blank" rel="noopener">
-                        {{ author.first_name }}{% if author.middle_name %} {{ author.middle_name }}{% endif %} {{ author.last_name }}{% unless is_me %}†{% endunless %}
+                        {{ author_name | strip }}{% if is_corr %}†{% endif %}
                       </a>{% if forloop.last == false %},{% endif %}
                     {% else %}
-                      {{ author.first_name }}{% if author.middle_name %} {{ author.middle_name }}{% endif %} {{ author.last_name }}{% unless is_me %}†{% endunless %}{% if forloop.last == false %},{% endif %}
+                      {{ author_name | strip }}{% if is_corr %}†{% endif %}{% if forloop.last == false %},{% endif %}
                     {% endif %}
                   {% else %}
-                    {{ author_id }}†{% if forloop.last == false %},{% endif %}
+                    {{ author_id }}{% if forloop.last == false %},{% endif %}
                   {% endif %}
                 </span>
               {% endfor %}
             </div>
-
 
             <div class="publication-venue">
               <span>{{ publication.venue }}</span>
@@ -290,7 +299,6 @@ layout: null
       {% endfor %}
     </div>
   </section>
-
 
   <footer class="footer">
     <div class="container">
