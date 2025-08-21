@@ -167,6 +167,7 @@ layout: null
   <section class="section">
     <div class="container is-max-desktop">
       <h2 class="title is-3">Publications</h2>
+      <h3 class="subtitle is-5">International Journal</h3> 
 
       {% for publication in site.data.publications %}
       <div class="publication-block columns">
@@ -247,20 +248,13 @@ layout: null
                 <span>Project Page</span>
               </a>
               {% endif %}
-
-              {% if publication.doi %}
-              <a class="external-link button is-small is-ghost" href="https://doi.org/{{ publication.doi }}" target="_blank" rel="noopener">
-                <span class="icon"><i class="fas fa-link"></i></span>
-                <span>DOI</span>
+              
+              {%- if publication.link %}
+              <a class="external-link button is-small is-ghost" href="{{ pdf_link }}" target="_blank" rel="noopener">
+                <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                <span>PDF</span>
               </a>
-              {% endif %}
-
-              {% if publication.journal_url %}
-              <a class="external-link button is-small is-ghost" href="{{ publication.journal_url }}" target="_blank" rel="noopener">
-                <span class="icon"><i class="fas fa-book"></i></span>
-                <span>Journal</span>
-              </a>
-              {% endif %}
+              {%- endif -%}
 
               {% if publication.arxiv %}
               <a class="external-link button is-small is-ghost" href="https://arxiv.org/pdf/{{ publication.arxiv }}.pdf" target="_blank" rel="noopener">
