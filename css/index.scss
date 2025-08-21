@@ -2,6 +2,16 @@
 ---
 @import "base";
 
+/* ==== 2줄째부터 4px 들여쓰기 유틸 ==== */
+@mixin hanging($px) {
+  padding-left: $px;
+  text-indent: -$px;
+}
+
+@media (max-width: 768px) {
+  .edu-sub { margin-left: 1rem; padding-left: .5rem; }
+}
+
 /* === 모든 제목/소제목도 body의 폰트만 상속 === */
 .title,
 .subtitle,
@@ -115,15 +125,6 @@ button, input, select, textarea {
 .edu-sub li { @include hanging(4px); }
 
 .edu-sub li::marker { color: #888; }
-
-@media (max-width: 768px) {
-  .edu-sub { margin-left: 1rem; padding-left: .5rem; }
-}
-/* ==== 2줄째부터 4px 들여쓰기 유틸 ==== */
-@mixin hanging($px) {
-  padding-left: $px;
-  text-indent: -$px;
-}
 
 /* Education: ● 불릿 항목의 줄바꿈 라인만 4px 더 안쪽으로 */
 .edu-sub li {
