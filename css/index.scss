@@ -6,9 +6,7 @@
   font-weight: 700;
 }
 
-.portrait {
-  overflow: hidden;
-}
+.portrait { overflow: hidden; }
 
 .footer .footer-links a {
   font-size: 25px;
@@ -23,21 +21,12 @@
     font-weight: 600;
     font-size: 110% !important;
 
-    a,
-    a:visited {
-      color: #000;
-    }
+    a, a:visited { color: #000; }
   }
 
-  /* 저널명(첫 span)만 회색, 나머지는 기본 상속 */
-  .publication-venue {
-    width: fit-content;
-    margin-top: 0;
-    color: inherit;
-  }
-  .publication-venue > span:first-child {
-    color: #7a7a7a;
-  }
+  /* 저널명(첫 span)만 회색, 나머지는 기본(검정) */
+  .publication-venue { width: fit-content; margin-top: 0; color: inherit; }
+  .publication-venue > span:first-child { color: #7a7a7a; }
 
   .publication-venue-emph {
     font-style: normal;
@@ -47,105 +36,76 @@
     padding-left: 0.25em;
   }
 
-  .publication-awards {
-    color: firebrick;
-    width: fit-content;
-    font-weight: bolder;
-  }
+  .publication-awards { color: firebrick; width: fit-content; font-weight: bolder; }
 
   /* 저자는 전부 검정 */
   .publication-authors {
     color: #000;
 
-    .author-me {
-      color: #000;
+    .author-me { color: #000; font-weight: 600; }
+
+    a, a:visited { color: #000 !important; }
+    a:hover { text-decoration: underline; }
+
+    /* (대안) Liquid를 못 바꿀 때: 공저자에 † 표시를 CSS로 붙임
+       - 쉼표 뒤에 표시되는 점은 감안하세요 (권장은 Liquid 패치) */
+    .author-block:not(.author-me)::after {
+      content: "†";
+      margin-left: .15em;
       font-weight: 600;
-    }
-
-    a,
-    a:visited {
-      color: #000 !important;
-    }
-
-    a:hover {
-      text-decoration: underline;
     }
   }
 
   .publication-image {
     border-radius: 2%;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    font-size: 0;
-
-    img {
-      width: 100%;
-    }
+    width: 100%; height: 100%;
+    overflow: hidden; font-size: 0;
+    img { width: 100%; }
   }
 
+  .publication-mousecell { position: relative; font-size: 0; }
   .publication-mousecell {
-    position: relative;
-    font-size: 0;
+    width: 100%; height: 100%;
+    display: inline-block; overflow: hidden;
+    video { display: none; }
   }
 
-  .publication-mousecell {
-    width: 100%;
-    height: 100%;
-    display: inline-block;
-    overflow: hidden;
+  .publication-description { color: #333; margin: 0.5em 0; }
 
-    video {
-      display: none;
-    }
-  }
-
-  .publication-description {
-    color: #333;
-    margin: 0.5em 0;
-  }
-
-  .publication-links {
-    margin: 0 !important;
-    margin-top: 0.5em !important;
-  }
+  .publication-links { margin: 0 !important; margin-top: 0.5em !important; }
 }
 
-/* ===== Education ===== */
-/* 상위(학교) 항목: 글머리표 제거 */
-.edu-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.edu-list > li {
-  margin-bottom: 1rem; /* 학교별 간격 */
-}
-.edu-list > li > b {
-  display: block; /* 학교명을 한 줄로 분리 */
+/* ===== International Journal heading ===== */
+/* 방법 A: h3에 class="title is-5 ij-heading" 달았을 때 */
+.ij-heading {
+  font-family: 'Google Sans';
   font-weight: 700;
 }
 
-/* 하위(상세) 항목: ● 글머리표 + 들여쓰기 */
+/* 방법 B: 기존에 subtitle로 두었을 때(취약하지만 편법) */
+.title.is-3 + .subtitle.is-5 {
+  font-family: 'Google Sans';
+  font-weight: 700;
+}
+
+/* ===== Education ===== */
+.edu-list {
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.edu-list > li { margin-bottom: 1rem; }
+.edu-list > li > b { display: block; font-weight: 700; }
+
 .edu-sub {
   list-style: disc outside !important;
   margin-top: .35rem;
-  margin-left: 1.25rem;  /* 들여쓰기 */
-  padding-left: .75rem;  /* 점과 텍스트 간격 */
+  margin-left: 1.25rem;   /* 들여쓰기 */
+  padding-left: .75rem;   /* 점과 텍스트 간격 */
 }
-.edu-sub li {
-  margin: .15rem 0;
-}
+.edu-sub li { margin: .15rem 0; }
 
-/* 점 색상 은은하게 */
-.edu-sub li::marker {
-  color: #888;
-}
+.edu-sub li::marker { color: #888; }
 
-/* 모바일에서 들여쓰기 살짝 줄이기 */
 @media (max-width: 768px) {
-  .edu-sub {
-    margin-left: 1rem;
-    padding-left: .5rem;
-  }
+  .edu-sub { margin-left: 1rem; padding-left: .5rem; }
 }
