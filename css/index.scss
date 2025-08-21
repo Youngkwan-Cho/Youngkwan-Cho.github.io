@@ -2,21 +2,21 @@
 ---
 @import "base";
 
-/* === Headings도 base의 폰트를 상속: family 지정 안 함 === */
+/* === 모든 제목/소제목도 body의 폰트만 상속 === */
 .title,
 .subtitle,
 h1, h2, h3, h4, h5, h6,
 .ij-heading {
-  font-family: inherit !important;  /* 어떤 외부 CSS가 덮어써도 무조건 상속 */
+  font-family: inherit !important;
   font-weight: 700;
 }
 
-/* 폼 컨트롤까지 확실히 상속 (일부 브라우저/라이브러리 대비) */
+/* 폼 컨트롤도 상속 강제 */
 button, input, select, textarea {
   font-family: inherit;
 }
 
-/* 초상화: 모서리 둥글게 + 은은한 그림자 */
+/* 초상화: 모서리 둥글게 + 그림자 */
 .portrait {
   overflow: hidden;
   border-radius: 10px;
@@ -39,7 +39,7 @@ button, input, select, textarea {
     a, a:visited { color: #000; }
   }
 
-  /* 저널명(첫 span)만 회색, 나머지는 상속(=base 폰트) */
+  /* 저널명(첫 span)만 회색, 폰트는 상속 */
   .publication-venue { width: fit-content; margin-top: 0; color: inherit; }
   .publication-venue > span:first-child { color: #7a7a7a; }
 
@@ -53,7 +53,7 @@ button, input, select, textarea {
 
   .publication-awards { color: firebrick; width: fit-content; font-weight: bolder; }
 
-  /* 저자는 전부 검정(폰트는 base 상속) */
+  /* 저자는 전부 검정(폰트는 상속) */
   .publication-authors {
     color: #000;
 
