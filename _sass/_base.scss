@@ -2,3 +2,7 @@
 body {
   font-family: "Noto Sans", sans-serif;
 }
+
+button, input, select, textarea {
+  font-family: inherit;
+}
