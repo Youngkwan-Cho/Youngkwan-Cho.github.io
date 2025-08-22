@@ -148,12 +148,12 @@ layout: null
             {% if edu.note %}<li>{{ edu.note }}</li>{% endif %}
 
             {% if edu.honor %}
-              {% assign honor_text = edu.honor | replace: 'Magna Cum Laude', '<em>Magna Cum Laude</em>' %}
+              {% assign honor_text = edu.honor | replace: 'Summa Cum Laude', '<em>Summa Cum Laude</em>' %}
               <li>{{ honor_text }}</li>
             {% endif %}
             
             {% if edu.honors %}
-              {% assign honors_text = edu.honors | replace: 'Magna Cum Laude', '<em>Magna Cum Laude</em>' %}
+              {% assign honors_text = edu.honors | replace: 'Summa Cum Laude', '<em>Summa Cum Laude</em>' %}
               <li>{{ honors_text }}</li>
             {% endif %}
           </ul>
