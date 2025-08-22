@@ -69,8 +69,8 @@ layout: null
               </a>
               {% endif %}
 
-              {%- comment -%}
-              <a class="external-link button is-light" href="https://www.linkedin.com/in/{{ site.twitter_username }}">
+              {% if site.linkedin and site.linkedin != "" %}
+              <a class="external-link button is-light" href="https://www.linkedin.com/in/{{ site.linkedin }}">
                 <span class="icon"><i class="fab fa-linkedin"></i></span>
                 <span>Linkedin</span>
               </a>
