@@ -23,7 +23,7 @@ name: "Youngkwan Cho"
 position: M.S Student
 email: dudrhks1009@gmail.com
 description: |
-  I am a M.S student in Kyung Hee University at [Visual AI Lab](https://vslab.khu.ac.kr/) advised by Professor [MyeongAh Cho](https://myeongahcho.netlify.app/). I am mainly interested in the problem of image restoration and related computer vision tasks. 
+  I am a M.S student in Kyung Hee University at [Visual Science Lab](https://vslab.khu.ac.kr/) advised by Professor [MyeongAh Cho](https://myeongahcho.netlify.app/). I am mainly interested in the problem of image restoration and related computer vision tasks. 
   Recently, to enable better application and implementation on real-world scenarios, I am working on real-world weather restoration.
   
 baseurl: "" # the subpath of your site, e.g. /blog
